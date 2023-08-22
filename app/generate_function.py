@@ -24,9 +24,9 @@ def string_to_dict(input_string):
                 scenes[scene_num] = description
     return scenes
 
-def create_image_album(input_string, pipeline):
+def create_image_album(input_string, pipeline, image_folder):
     scenes = string_to_dict(input_string)
     for scene_num, description in scenes.items():
         image_filename = f"{scene_num}.png"
-        generate(f"{description}, high resolution, realistic, perfect face", pipeline).save(f"test_image/{image_filename}")
+        generate(f"{description}, high resolution, realistic, perfect face", pipeline).save(f"{image_folder}/{image_filename}")
         print(f"{image_filename} finished")

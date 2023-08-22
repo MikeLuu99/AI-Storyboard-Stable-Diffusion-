@@ -49,28 +49,6 @@ def loadmodel():
     pipe = pipe.to("cuda")
     return pipe
 
-def string_to_dict(input_string):
-    scenes = {}
-    scene_lines = input_string.split('\n')
-
-    for line in scene_lines:
-        line = line.strip()
-        if line:
-            scene_parts = line.split(':', 1)
-            if len(scene_parts) == 2:
-                scene_num = scene_parts[0].strip()
-                description = scene_parts[1].strip()
-                scenes[scene_num] = description
-    return scenes
-
-def zip_images_in_folder(folder_path, output_path):
-    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-        for foldername, subfolders, filenames in os.walk(folder_path):
-            for filename in filenames:
-                if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-                    file_path = os.path.join(foldername, filename)
-                    zipf.write(file_path, os.path.relpath(file_path, folder_path))
-
 def main():
     pipe = loadmodel()    
     st.title("AI Storyboard")
@@ -80,18 +58,9 @@ def main():
     input = st.text_area("Enter your script here")
     if st.button("Submit"):
         delete_images_in_folder(image_folder=image_folder)
-        create_image_album(input, pipeline=pipe)
+        create_image_album(input, pipeline=pipe, image_folder=image_folder)
         display_scenes(image_folder=image_folder)
-        if os.path.exists(image_folder) and os.path.isdir(image_folder):
-            download_path = Path.home() / "Downloads"
-            zip_output_path = os.path.join(download_path, "downloaded_images.zip")
-            st.download_button(
-                label="Download",
-                data=open(zip_output_path, 'rb').read(),
-                file_name="downloaded_images.zip"
-            )
-        else:
-            st.error("Invalid folder path. Please provide a valid path.")
+
      # Get a list of all image files in the folder
  # Get a list of all image files in the folder
     #create_image_album(input)
