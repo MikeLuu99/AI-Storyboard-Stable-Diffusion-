@@ -52,7 +52,7 @@ def loadmodel():
 def main():
     pipe = loadmodel()    
     st.title("AI Storyboard")
-    image_folder = r"C:\Users\trung\Documents\AI_Storyboard\test_image"
+    image_folder = "test_image"
     st.write("Please enter in the format:")
     st.write("Scene 1: [Scene description]")
     input = st.text_area("Enter your script here")
