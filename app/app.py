@@ -49,6 +49,15 @@ def loadmodel():
     pipe = pipe.to("cuda")
     return pipe
 
+def create_zip(folder_path, zip_path):
+    with zipfile.ZipFile(zip_path, 'w') as zipf:
+        for root, _, files in os.walk(folder_path):
+            for file in files:
+                if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                    file_path = os.path.join(root, file)
+                     
+                    zipf.write(file_path, os.path.relpath(file_path, folder_path))
+
 def main():
     pipe = loadmodel()    
     st.title("AI Storyboard")
@@ -60,6 +69,10 @@ def main():
         delete_images_in_folder(image_folder=image_folder)
         create_image_album(input, pipeline=pipe, image_folder=image_folder)
         display_scenes(image_folder=image_folder)
+        create_zip(image_folder, zip_path='images.zip')
+        with open('images.zip', 'rb') as f:
+            st.download_button('Download Zip', f, file_name='images.zip')
+        
 
      # Get a list of all image files in the folder
  # Get a list of all image files in the folder
