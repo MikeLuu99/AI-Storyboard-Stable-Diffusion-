@@ -1,9 +1,6 @@
 import torch
 from diffusers import DPMSolverMultistepScheduler
 
-
-
-
 def generate(prompt, pipeline):
     with torch.inference_mode():
         pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)

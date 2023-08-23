@@ -1,12 +1,11 @@
 import streamlit as st
 from diffusers import StableDiffusionPipeline
 import torch
-from torch import inference_mode
 from generate_function import create_image_album
 import os
 from PIL import Image
 import zipfile
-from pathlib import Path
+
 
 def resize_image(image_path, max_width):
     img = Image.open(image_path)
@@ -32,10 +31,8 @@ def display_scenes(image_folder):
     image_files = [f for f in os.listdir(image_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
     
     if not image_files:
-        st.write("No images found in the folder.")
         return
     
-    st.write("Images in folder:")
     
     for image_file in image_files:
         image_path = os.path.join(image_folder, image_file)
@@ -59,24 +56,35 @@ def create_zip(folder_path, zip_path):
                     zipf.write(file_path, os.path.relpath(file_path, folder_path))
 
 def main():
-    pipe = loadmodel()    
+    st.set_page_config(
+        page_title="AI Storyboard",
+        page_icon="media_file/ai.png",
+        initial_sidebar_state="expanded"
+    )
+    pipe = loadmodel()
+    st.image('media_file/ai.png', width=100)    
     st.title("AI Storyboard")
-    image_folder = "test_image"
-    st.write("Please enter in the format:")
+    image_folder = "media_file/test_image"
+    st.subheader("Please enter in your scriptq:")
     st.write("Scene 1: [Scene description]")
-    input = st.text_area("Enter your script here")
-    if st.button("Submit"):
+    st.write("Scene 2: [Scene description]")
+    input = st.text_area("")
+    if st.button("Create Storyboard"):
         delete_images_in_folder(image_folder=image_folder)
         create_image_album(input, pipeline=pipe, image_folder=image_folder)
-        display_scenes(image_folder=image_folder)
-        create_zip(image_folder, zip_path='images.zip')
-        with open('images.zip', 'rb') as f:
-            st.download_button('Download Zip', f, file_name='images.zip')
-        
+        create_zip(image_folder, zip_path='media_file/images.zip')
+        with open('media_file/images.zip', 'rb') as f:
+            st.download_button('Download', f, file_name='images.zip')
+    display_scenes(image_folder)
+            
+    # Using object notation
 
-     # Get a list of all image files in the folder
- # Get a list of all image files in the folder
-    #create_image_album(input)
+    # Using "with" notation
+    with st.sidebar:
+        st.title('FAQ')
+        st.subheader('Github : https://github.com/LPK99/AI-Storyboard-Stable-Diffusion-')
+        st.write('Developed by Duc Luu')
+
 
 if __name__ == "__main__":
     main()
