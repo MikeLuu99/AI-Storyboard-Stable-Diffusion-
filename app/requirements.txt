@@ -64,7 +64,7 @@ networkx==3.0
 numexpr==2.8.5
 numpy==1.25.2
 omegaconf==2.3.0
-opencv-python==4.8.0.76
+#opencv-python==4.8.0.76
 packaging==23.1
 pandas==2.0.3
 parso==0.8.3
@@ -130,6 +130,5 @@ wcwidth==0.2.6
 xxhash==3.3.0
 yarl==1.9.2
 zipp==3.16.2
-#libglib2.0-0
-#libgl1
-opencv-python-headless==4.5.3.56
+opencv-contrib-python==4.5.5.62
+#opencv-python-headless==4.5.3.56
