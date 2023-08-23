@@ -130,5 +130,5 @@ wcwidth==0.2.6
 xxhash==3.3.0
 yarl==1.9.2
 zipp==3.16.2
-opencv-contrib-python==4.5.5.62
-#opencv-python-headless==4.5.3.56
+#opencv-contrib-python==4.5.5.62
+opencv-python-headless==4.5.3.56
