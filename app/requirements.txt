@@ -132,3 +132,4 @@ yarl==1.9.2
 zipp==3.16.2
 libglib2.0-0
 libgl1
+opencv-python-headless==4.5.3.56
