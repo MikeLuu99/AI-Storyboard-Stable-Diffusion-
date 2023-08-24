@@ -40,10 +40,10 @@ def display_scenes(image_folder):
         st.image(img, use_column_width=True, caption=image_file)
 
 @st.cache_resource
-def loadmodel():
+def loadmodel(device):
     model_id = "prompthero/openjourney"
     pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
-    pipe = pipe.to("cuda")
+    pipe = pipe.to(device)
     return pipe
 
 def create_zip(folder_path, zip_path):
@@ -61,7 +61,9 @@ def main():
         page_icon="media_file/ai.png",
         initial_sidebar_state="expanded"
     )
-    pipe = loadmodel()
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
+    pipe = loadmodel(device)
     st.image('media_file/ai.png', width=100)    
     st.title("AI Storyboard")
     image_folder = "media_file/test_image"
