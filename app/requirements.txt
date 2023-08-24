@@ -7,3 +7,4 @@ torchmetrics==1.0.3
 torchvision==0.15.2
 zipp==3.16.2
 diffusers==0.20.0
+transformers==4.31.0
