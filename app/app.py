@@ -6,7 +6,7 @@ import os
 from PIL import Image
 import zipfile
 import io
-
+torch.set_default_dtype(torch.float32)
 
 def resize_image(image_path, max_width):
     img = Image.open(image_path)
