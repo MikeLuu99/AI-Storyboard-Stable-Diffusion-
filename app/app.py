@@ -59,13 +59,11 @@ def create_zip(folder_path, zip_path):
 def main():
     st.set_page_config(
         page_title="AI Storyboard",
-        page_icon="media_file/ai.png",
         initial_sidebar_state="expanded"
     )
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    pipe = loadmodel(device)
-    st.image('media_file/ai.png', width=100)    
+    pipe = loadmodel(device)  
     st.title("AI Storyboard")
     st.subheader("Please enter in your scriptq:")
     st.write("Scene 1: [Scene description]")
