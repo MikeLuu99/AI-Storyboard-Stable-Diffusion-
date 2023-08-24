@@ -1,10 +1,13 @@
 import torch
 from diffusers import DPMSolverMultistepScheduler
-
+import streamlit as st
+from PIL import Image
+album = []
 def generate(prompt, pipeline):
     with torch.inference_mode():
         pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)
         image = pipeline(prompt=prompt, num_inference_steps=20, guidance_scale=8.0, height=512, width=768).images[0]
+        print(type(image))
     return image
 
 def string_to_dict(input_string):
@@ -21,9 +24,12 @@ def string_to_dict(input_string):
                 scenes[scene_num] = description
     return scenes
 
-def create_image_album(input_string, pipeline, image_folder):
+def create_image_album(input_string, pipeline):
     scenes = string_to_dict(input_string)
     for scene_num, description in scenes.items():
         image_filename = f"{scene_num}.png"
-        generate(f"{description}, high resolution, realistic, perfect face", pipeline).save(f"{image_folder}/{image_filename}")
+        img = generate(f"{description}, high resolution, realistic, perfect face", pipeline)
         print(f"{image_filename} finished")
+        print(type(img))
+        st.image(img, use_column_width=True, caption=description)
+        album.append(img)

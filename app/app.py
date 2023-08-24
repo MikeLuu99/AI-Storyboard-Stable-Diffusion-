@@ -1,10 +1,11 @@
 import streamlit as st
 from diffusers import StableDiffusionPipeline
 import torch
-from generate_function import create_image_album
+from generate_function import create_image_album, album
 import os
 from PIL import Image
 import zipfile
+import io
 
 
 def resize_image(image_path, max_width):
@@ -66,18 +67,29 @@ def main():
     pipe = loadmodel(device)
     st.image('media_file/ai.png', width=100)    
     st.title("AI Storyboard")
-    image_folder = "media_file/test_image"
     st.subheader("Please enter in your scriptq:")
     st.write("Scene 1: [Scene description]")
     st.write("Scene 2: [Scene description]")
     input = st.text_area("")
     if st.button("Create Storyboard"):
-        delete_images_in_folder(image_folder=image_folder)
-        create_image_album(input, pipeline=pipe, image_folder=image_folder)
-        create_zip(image_folder, zip_path='media_file/images.zip')
-        with open('media_file/images.zip', 'rb') as f:
-            st.download_button('Download', f, file_name='images.zip')
-    display_scenes(image_folder)
+        create_image_album(input_string=input, pipeline=pipe)
+    zip_buffer = io.BytesIO()
+    with zipfile.ZipFile(zip_buffer, 'w') as zipf:
+        for i, img in enumerate(album):
+                img_buffer = io.BytesIO()
+                img.save(img_buffer, format="JPEG")
+                img_bytes = img_buffer.getvalue()
+                zipf.writestr(f"random_image_{i + 1}.jpg", img_bytes)
+
+    zip_buffer.seek(0)
+    st.download_button(
+        label="Download your Storyboard",
+        data=zip_buffer,
+        file_name="generated_scenes.zip",
+        key="download_all_button",
+    )
+
+
             
     # Using object notation
 
