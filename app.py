@@ -40,7 +40,7 @@ def display_scenes(image_folder):
         img = Image.open(image_path)
         st.image(img, use_column_width=True, caption=image_file)
 
-@st.cache
+@st.cache_resource
 def loadmodel(device):
     model_id = "prompthero/openjourney"
     pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float32)
