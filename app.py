@@ -6,6 +6,7 @@ import os
 from PIL import Image
 import zipfile
 import io
+import argparse
 
 
 def resize_image(image_path, max_width):
@@ -57,6 +58,12 @@ def create_zip(folder_path, zip_path):
                     zipf.write(file_path, os.path.relpath(file_path, folder_path))
 
 def main():
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--skip-torch-cuda-test", action="store_true")
+    parser.add_argument("--no-half", action="store_true")
+    parser.add_argument("--use-cpu", action="store_true")
+    args = parser.parse_args()
     st.set_page_config(
         page_title="AI Storyboard",
         initial_sidebar_state="expanded"
