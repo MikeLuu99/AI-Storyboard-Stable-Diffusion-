@@ -7,7 +7,8 @@ from PIL import Image
 import zipfile
 import io
 import argparse
-
+import sys
+sys.argv = ["main.py", "--skip-torch-cuda-test", "--no-half", "--use-cpu", "all"]
 
 def resize_image(image_path, max_width):
     img = Image.open(image_path)
@@ -101,5 +102,4 @@ def main():
 
 
 if __name__ == "__main__":
-    st.run('--skip-torch-cuda-test --no-half --use-cpu')
     main()
