@@ -59,11 +59,6 @@ def create_zip(folder_path, zip_path):
 
 def main():
     
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--skip-torch-cuda-test", action="store_true")
-    parser.add_argument("--no-half", action="store_true")
-    parser.add_argument("--use-cpu", action="store_true")
-    args = parser.parse_args()
     st.set_page_config(
         page_title="AI Storyboard",
         initial_sidebar_state="expanded"
@@ -106,4 +101,5 @@ def main():
 
 
 if __name__ == "__main__":
+    st.run('--skip-torch-cuda-test --no-half --use-cpu')
     main()
