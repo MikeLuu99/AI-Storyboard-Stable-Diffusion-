@@ -1,7 +1,7 @@
 streamlit
 accelerate==0.20.3
 Pillow==9.3.0
-torch==2.0.1
+torch==1.13.1
 torchaudio==2.0.2
 torchmetrics==1.0.3
 torchvision==0.15.2
