@@ -6,9 +6,7 @@ import os
 from PIL import Image
 import zipfile
 import io
-import argparse
-import sys
-sys.argv = ["main.py", "--skip-torch-cuda-test", "--no-half", "--use-cpu", "all"]
+
 
 def resize_image(image_path, max_width):
     img = Image.open(image_path)
@@ -61,14 +59,14 @@ def create_zip(folder_path, zip_path):
 def main():
     
     st.set_page_config(
-        page_title="AI Storyboard",
+        page_title="AI Storyboard!!!",
         initial_sidebar_state="expanded"
     )
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     pipe = loadmodel(device)  
     st.title("AI Storyboard")
-    st.subheader("Please enter in your scriptq:")
+    st.subheader("Please enter in your script:")
     st.write("Scene 1: [Scene description]")
     st.write("Scene 2: [Scene description]")
     input = st.text_area("")
