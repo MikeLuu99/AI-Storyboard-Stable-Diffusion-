@@ -57,21 +57,15 @@ def create_zip(folder_path, zip_path):
                     zipf.write(file_path, os.path.relpath(file_path, folder_path))
 
 def main():
-    st.set_page_config(
-        page_title="AI Storyboard",
-        page_icon="media_file/ai.png",
-        initial_sidebar_state="expanded"
-    )
+    
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    pipe = loadmodel(device)
-    st.image('media_file/ai.png', width=100)    
-    st.title("AI Storyboard")
-    st.subheader("Please enter in your scriptq:")
+    st.subheader("Please enter in your script:")
     st.write("Scene 1: [Scene description]")
     st.write("Scene 2: [Scene description]")
     input = st.text_area("")
     if st.button("Create Storyboard"):
+        pipe = loadmodel(device)    
         create_image_album(input_string=input, pipeline=pipe)
     zip_buffer = io.BytesIO()
     with zipfile.ZipFile(zip_buffer, 'w') as zipf:
@@ -83,7 +77,7 @@ def main():
 
     zip_buffer.seek(0)
     st.download_button(
-        label="Download your Storyboard",
+        label="Download",
         data=zip_buffer,
         file_name="generated_scenes.zip",
         key="download_all_button",

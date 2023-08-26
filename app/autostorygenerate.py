@@ -126,18 +126,12 @@ def load_diffuser_model(device):
 
 
 def main():
-    st.set_page_config(
-        page_title="AI Storyboard",
-        page_icon="media_file/ai.png",
-        initial_sidebar_state="expanded"
-    )
-    device = "cuda"
 
-    st.image('media_file/ai.png', width=100)    
-    st.title("AI DIY Storyboard")
-    st.subheader("Please enter in your suggestion:")
+    device = "cuda"
+ 
+    st.subheader("Please enter in your prompt/suggestion:")
     input = st.text_area("")
-    if st.button("Let AI generate your story"):
+    if st.button("Create AI-generated story"):
         llm = load_llm_model(device, model_id=MODEL_ID, model_basename=MODEL_BASENAME)
         story = llm_create_story(llm=llm, suggestion=input)
         st.write(story)
@@ -157,7 +151,7 @@ def main():
 
     zip_buffer.seek(0)
     st.download_button(
-        label="Download your Storyboard",
+        label="Download",
         data=zip_buffer,
         file_name="generated_scenes.zip",
         key="download_all_button",

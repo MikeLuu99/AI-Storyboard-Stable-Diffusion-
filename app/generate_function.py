@@ -5,20 +5,9 @@ from PIL import Image
 import re
 import ast
 import torch
-from auto_gptq import AutoGPTQForCausalLM
-from huggingface_hub import hf_hub_download
-from langchain.llms import HuggingFacePipeline, LlamaCpp
 from langchain.prompts import PromptTemplate
-from langchain import HuggingFaceHub, LLMChain
+from langchain import LLMChain
 # from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from transformers import (
-    AutoModelForCausalLM,
-    AutoTokenizer,
-    GenerationConfig,
-    LlamaForCausalLM,
-    LlamaTokenizer,
-    pipeline,
-)
 
 album = []
 def generate(prompt, pipeline):
