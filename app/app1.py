@@ -79,7 +79,7 @@ def main():
                 img_buffer = io.BytesIO()
                 img.save(img_buffer, format="JPEG")
                 img_bytes = img_buffer.getvalue()
-                zipf.writestr(f"random_image_{i + 1}.jpg", img_bytes)
+                zipf.writestr(f"scene_{i + 1}.jpg", img_bytes)
 
     zip_buffer.seek(0)
     st.download_button(
