@@ -1,4 +1,6 @@
 import streamlit as st
+from generate_function import clear_cuda_memory
+
 
 class MultiApp:
 
@@ -19,10 +21,12 @@ class MultiApp:
             "function": func
         })
 
+        
     def run(self):
         app = st.selectbox(
             'Go To',
             self.apps,
-            format_func=lambda app: app['title'])
+            format_func=lambda app: app['title'],
+        )
 
         app['function']()
