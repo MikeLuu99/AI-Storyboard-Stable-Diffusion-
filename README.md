@@ -15,5 +15,7 @@ The AI Storyboard has two main features:
 Creating a storyboard using your prompt
 Creating an original story with images using your suggestion.
 
-Running the AI Storyboard using Google Colab https://colab.research.google.com/drive/1F94yAsoKDlrgVnTqJ6bAEhowqvqUsI97?usp=sharing
-Running the AI Story Generator https://colab.research.google.com/drive/1belQNrgyxdmhTrf0le35axemGUdVRQoC?usp=sharing
+Running the AI Storyboard using Google Colab: 
+https://colab.research.google.com/drive/1F94yAsoKDlrgVnTqJ6bAEhowqvqUsI97?usp=sharing
+Running the AI Story Generator:
+https://colab.research.google.com/drive/1belQNrgyxdmhTrf0le35axemGUdVRQoC?usp=sharing
