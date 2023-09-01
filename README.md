@@ -25,4 +25,7 @@ https://colab.research.google.com/drive/1belQNrgyxdmhTrf0le35axemGUdVRQoC?usp=sh
 ![Web capture_30-8-2023_201148_tidy-worms-listen loca lt](https://github.com/LPK99/AI-Storyboard-Stable-Diffusion-/assets/13818447/02c1618f-645a-49fc-9084-71544fbb7dd1)
 
 ## Running AI Storyboard locally
+'''bash
+git clone
+'''
 
