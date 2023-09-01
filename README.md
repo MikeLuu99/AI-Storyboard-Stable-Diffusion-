@@ -12,6 +12,7 @@ pinned: false
 
 # AI-Storyboard-Stable-Diffusion-
 The AI Storyboard has two main features:
+
 Creating a storyboard using your prompt
 
 Creating an original story with images using your suggestion.
