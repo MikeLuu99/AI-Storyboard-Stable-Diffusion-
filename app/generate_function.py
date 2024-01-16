@@ -33,8 +33,7 @@ def string_to_dict(input_string):
     scene_lines = input_string.split('\n')
 
     for line in scene_lines:
-        line = line.strip()
-        if line:
+        if line := line.strip():
             scene_parts = line.split(':', 1)
             if len(scene_parts) == 2:
                 scene_num = scene_parts[0].strip()
@@ -45,9 +44,8 @@ def string_to_dict(input_string):
 def string_to_list(input_string):
 
     # Find the list using regular expression
-    match = re.search(r'\[.*?\]', input_string, re.DOTALL)
 
-    if match:
+    if match := re.search(r'\[.*?\]', input_string, re.DOTALL):
         extracted_list_str = match.group(0)
     
         # Convert the extracted string to a list using ast.literal_eval
